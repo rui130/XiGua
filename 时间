@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间</title>
+  <style type="text/css">
+    .big {
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+    }
+
+    .bspan {
+      width: 600px;
+      height: 10px;
+      position: absolute;
+      left: 0;
+      top: 295px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 12;
+    }
+
+    .bspan span {
+      width: 10px;
+      height: 10px;
+      background-color: rgb(36, 165, 148);
+
+    }
+
+    .smallspan {
+      width: 600px;
+      height: 10px;
+      position: absolute;
+      left: 0;
+      top: 295px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .smallspan span {
+      width: 6px;
+      height: 3px;
+      background-color: red;
+
+    }
+
+    .s {
+      width: 270px;
+      height: 10px;
+      background-color: royalblue;
+      position: absolute;
+      left: 300px;
+      top: 295px;
+      border-radius: 50%;
+      transform-origin: left center;
+      transform: rotateZ(-90deg);
+    }
+
+    .m {
+      width: 250px;
+      height: 10px;
+      background-color: rgb(80, 168, 182);
+      position: absolute;
+      left: 300px;
+      top: 295px;
+      border-radius: 50%;
+      transform-origin: left center;
+      transform: rotateZ(-90deg);
+    }
+
+    .h {
+      width: 230px;
+      height: 10px;
+      background-color: rgb(13, 27, 29);
+      position: absolute;
+      left: 300px;
+      top: 295px;
+      border-radius: 50%;
+      transform-origin: left center;
+      transform: rotateZ(-90deg);
+    }
+
+    .show {
+      width: 300px;
+      line-height: 20px;
+      padding: 10px;
+      text-align: center;
+      background-color: blanchedalmond;
+      border: 1px solid beige;
+      position: absolute;
+      left: 150px;
+      top: 420px;
+
+    }
+
+    .center {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 290px;
+      left: 290px;
+      background-color: bisque;
+      z-index: 66;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="big">
+    <div class="show"></div>
+    <div class="center"></div>
+  </div>
+</body>
+<script>
+  var big = document.querySelector('.big');
+  var deg = 0;
+
+  for (var i = 0; i < 6; i++) {
+    var big_span = document.createElement('div');
+    big.appendChild(big_span);
+    big_span.innerHTML = '<span></span><span></span>'
+    big_span.setAttribute('class', 'bspan');
+
+    big_span.style = `transform: rotateZ(${deg}deg);`;
+    deg += 30;
+  }
+  for (var i = 0; i < 30; i++) {
+    var big_span = document.createElement('div');
+    big.appendChild(big_span);
+    big_span.innerHTML = '<span></span><span></span>'
+    big_span.setAttribute('class', 'smallspan');
+
+    big_span.style = `transform: rotateZ(${deg}deg);`;
+    deg += 6;
+  }
+
+  var s = document.createElement('div');
+  s.setAttribute('class', 's');
+  big.appendChild(s);
+  var m = document.createElement('div');
+  m.setAttribute('class', 'm');
+  big.appendChild(m);
+
+  var h = document.createElement('div');
+  h.setAttribute('class', 'h');
+  big.appendChild(h);
+
+
+
+
+  var stime = setInterval(function () {
+    var date = new Date();
+    var second = date.getSeconds();
+    s.style.transform = `rotateZ(${-90+second*6}deg)`;
+
+
+  }, 1000)
+
+  var stime = setInterval(function () {
+
+    var date = new Date();
+    var hour = date.getHours();
+    h.style.transform = `rotateZ(${-90+hour*30}deg)`;
+
+  }, 1000)
+
+  var stime = setInterval(function () {
+
+    var date = new Date();
+    var min = date.getMinutes();
+    m.style.transform = `rotateZ(${-90+min*6}deg)`;
+
+  }, 1000)
+  var date = new Date();
+  var show = document.querySelector('.show');
+  show.innerHTML = `${date.toTimeString()}`;
+</script>
+
+</html>
